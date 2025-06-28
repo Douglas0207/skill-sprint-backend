@@ -11,13 +11,23 @@ const app = express();
 // CORS Middleware - allows React frontend (on port 3000) to communicate with backend
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://skill-sprint-rhra1dh3a-robinson-abel-douglas-projects.vercel.app'
+  'https://skill-sprint-rhra1dh3a-robinson-abel-douglas-projects.vercel.app',
+  'https://skill-sprint-pink.vercel.app' // ← ADD this too (your current frontend domain)
 ];
 
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow request
+    } else {
+      callback(new Error('CORS policy violation: ' + origin)); // Block others
+    }
+  },
+  credentials: true
 }));
+
+// Optional: Handle preflight requests
+app.options('*', cors());
 
 
 // Body parsing middleware

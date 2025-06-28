@@ -12,8 +12,10 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000',
   'https://skill-sprint-rhra1dh3a-robinson-abel-douglas-projects.vercel.app',
-  'https://skill-sprint-pink.vercel.app' // ← ADD this too (your current frontend domain)
+  'https://skill-sprint-pink.vercel.app',
+  'https://skill-sprint-k70wa3nz9-robinson-abel-douglas-projects.vercel.app'
 ];
+
 
 app.use(cors({
   origin: function (origin, callback) {

@@ -9,10 +9,16 @@ dotenv.config();
 const app = express();
 
 // CORS Middleware - allows React frontend (on port 3000) to communicate with backend
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://skill-sprint-rhra1dh3a-robinson-abel-douglas-projects.vercel.app'
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000', // frontend URL
-  credentials: true                // allow cookies and headers like Authorization
+  origin: allowedOrigins,
+  credentials: true,
 }));
+
 
 // Body parsing middleware
 app.use(express.json());
